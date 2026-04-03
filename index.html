@@ -24,15 +24,9 @@
         --mono: "DM Mono", monospace;
         --sans: "Syne", sans-serif;
         --ease: cubic-bezier(0.16, 1, 0.3, 1);
-        /* Dark section overrides for approach/radar/contact-r */
-        --dark-sec-bg: #0c0c0c;
-        --dark-sec-fg: #f5f4f0;
-        --dark-sec-border: rgba(245, 244, 240, 0.08);
-        --dark-sec-dim: rgba(245, 244, 240, 0.3);
-        --dark-sec-muted: rgba(245, 244, 240, 0.5);
-        --dark-sec-hover: #161616;
+        --card-hover: rgba(0, 0, 0, 0.03);
         --edu-watermark: rgba(0, 0, 0, 0.04);
-        --pillar-watermark: rgba(245, 244, 240, 0.04);
+        --pillar-watermark: rgba(0, 0, 0, 0.04);
       }
 
       [data-theme="dark"] {
@@ -41,12 +35,7 @@
         --dim: #8a8a8a;
         --accent: #c0c0c0;
         --border: rgba(245, 244, 240, 0.1);
-        --dark-sec-bg: #181818;
-        --dark-sec-fg: #f0efe8;
-        --dark-sec-border: rgba(245, 244, 240, 0.1);
-        --dark-sec-dim: rgba(245, 244, 240, 0.35);
-        --dark-sec-muted: rgba(245, 244, 240, 0.55);
-        --dark-sec-hover: #222;
+        --card-hover: rgba(255, 255, 255, 0.04);
         --edu-watermark: rgba(255, 255, 255, 0.04);
         --pillar-watermark: rgba(245, 244, 240, 0.04);
       }
@@ -65,7 +54,8 @@
         background: var(--paper);
         color: var(--ink);
         font-family: var(--mono);
-        line-height: 1.65;
+        font-size: 15px;
+        line-height: 1.7;
         overflow-x: hidden;
         transition: background 0.4s var(--ease), color 0.4s var(--ease);
       }
@@ -105,7 +95,7 @@
       .nav-wordmark {
         font-family: var(--sans);
         font-weight: 800;
-        font-size: 12px;
+        font-size: 13px;
         letter-spacing: 0.12em;
         text-transform: uppercase;
         margin-bottom: 36px;
@@ -114,7 +104,7 @@
         display: block;
         font-family: var(--mono);
         font-weight: 400;
-        font-size: 10px;
+        font-size: 11px;
         color: var(--dim);
         letter-spacing: 0.05em;
         margin-top: 3px;
@@ -128,7 +118,7 @@
       }
       .nav-links li a {
         font-family: var(--mono);
-        font-size: 11px;
+        font-size: 12px;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--dim);
@@ -156,7 +146,7 @@
       }
 
       .nav-foot {
-        font-size: 10px;
+        font-size: 11px;
         color: var(--dim);
         line-height: 1.7;
       }
@@ -174,7 +164,7 @@
         border: 1px solid var(--border);
         padding: 8px 14px;
         font-family: var(--mono);
-        font-size: 10px;
+        font-size: 11px;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--dim);
@@ -269,7 +259,7 @@
         opacity: 0.5;
       }
       .hero-eyebrow {
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--dim);
@@ -300,7 +290,7 @@
         animation: fadeUp 0.8s 0.38s var(--ease) forwards;
       }
       .trait-ticker-label {
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: 0.14em;
         text-transform: uppercase;
         color: var(--dim);
@@ -308,7 +298,7 @@
       }
       .trait-ticker-word {
         font-family: var(--sans);
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 700;
         letter-spacing: -0.01em;
         min-width: 200px;
@@ -336,7 +326,7 @@
         position: absolute;
         bottom: 44px;
         left: 56px;
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: 0.14em;
         text-transform: uppercase;
         color: var(--dim);
@@ -380,7 +370,7 @@
         background: var(--ink);
         color: var(--paper);
         padding: 8px 16px;
-        font-size: 10px;
+        font-size: 11px;
         letter-spacing: 0.12em;
         text-transform: uppercase;
         align-self: flex-start;
@@ -408,7 +398,7 @@
       }
 
       .hero-summary {
-        font-size: 13.5px;
+        font-size: 15px;
         line-height: 1.9;
         color: var(--accent);
         max-width: 400px;
@@ -435,13 +425,13 @@
       }
       .kpi-n {
         font-family: var(--sans);
-        font-size: 26px;
+        font-size: 28px;
         font-weight: 800;
         line-height: 1;
         margin-bottom: 3px;
       }
       .kpi-l {
-        font-size: 10px;
+        font-size: 11px;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--dim);
@@ -472,13 +462,13 @@
         margin-bottom: 52px;
       }
       .sec-n {
-        font-size: 11px;
+        font-size: 13px;
         letter-spacing: 0.12em;
         color: var(--dim);
       }
       .sec-t {
         font-family: var(--sans);
-        font-size: 34px;
+        font-size: 36px;
         font-weight: 700;
         letter-spacing: -0.02em;
         line-height: 1;
@@ -488,25 +478,19 @@
      APPROACH PILLARS
   ═══════════════════════════════════ */
       #approach {
-        background: var(--dark-sec-bg);
-        color: var(--dark-sec-fg);
-      }
-      #approach .sec-t {
-        color: var(--dark-sec-fg);
-      }
-      #approach .sec-n {
-        color: var(--dark-sec-dim);
+        background: var(--paper);
+        color: var(--ink);
       }
 
       .pillars {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 1px;
-        background: var(--dark-sec-border);
-        border: 1px solid var(--dark-sec-border);
+        background: var(--border);
+        border: 1px solid var(--border);
       }
       .pillar {
-        background: var(--dark-sec-bg);
+        background: var(--paper);
         padding: 32px 24px 36px;
         display: flex;
         flex-direction: column;
@@ -530,7 +514,7 @@
         user-select: none;
       }
       .pillar:hover {
-        background: var(--dark-sec-hover);
+        background: var(--card-hover);
       }
       .pillar-icon {
         font-size: 22px;
@@ -538,15 +522,15 @@
       }
       .pillar-title {
         font-family: var(--sans);
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 700;
         letter-spacing: -0.01em;
-        color: var(--dark-sec-fg);
+        color: var(--ink);
         line-height: 1.2;
       }
       .pillar-desc {
-        font-size: 11.5px;
-        color: var(--dark-sec-muted);
+        font-size: 13px;
+        color: var(--dim);
         line-height: 1.75;
       }
 
@@ -595,7 +579,7 @@
         align-items: flex-start;
       }
       .proj-yr {
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: 0.12em;
         color: var(--dim);
       }
@@ -613,7 +597,7 @@
       }
       .proj-title {
         font-family: var(--sans);
-        font-size: 19px;
+        font-size: 21px;
         font-weight: 700;
         letter-spacing: -0.01em;
         line-height: 1.2;
@@ -625,7 +609,7 @@
         gap: 6px;
       }
       .prob-label {
-        font-size: 9px;
+        font-size: 11px;
         letter-spacing: 0.16em;
         text-transform: uppercase;
         color: var(--dim);
@@ -641,7 +625,7 @@
         background: var(--dim);
       }
       .prob-text {
-        font-size: 12px;
+        font-size: 14px;
         color: var(--dim);
         line-height: 1.7;
         padding-left: 18px;
@@ -653,7 +637,7 @@
         gap: 6px;
         border: 1px solid var(--border);
         padding: 5px 10px;
-        font-size: 10px;
+        font-size: 11px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--dim);
@@ -676,7 +660,7 @@
         gap: 5px;
       }
       .tag {
-        font-size: 9.5px;
+        font-size: 11px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         padding: 4px 9px;
@@ -719,7 +703,7 @@
         background: var(--ink);
         color: var(--paper);
         padding: 7px 14px;
-        font-size: 9.5px;
+        font-size: 11px;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         width: 110px;
@@ -744,7 +728,7 @@
         border-bottom: none;
       }
       .exp-date {
-        font-size: 11px;
+        font-size: 13px;
         letter-spacing: 0.1em;
         color: var(--dim);
         text-transform: uppercase;
@@ -752,20 +736,20 @@
       }
       .exp-role {
         font-family: var(--sans);
-        font-size: 19px;
+        font-size: 21px;
         font-weight: 700;
         letter-spacing: -0.01em;
         margin-bottom: 3px;
       }
       .exp-org {
-        font-size: 11px;
+        font-size: 13px;
         color: var(--dim);
         letter-spacing: 0.08em;
         text-transform: uppercase;
         margin-bottom: 14px;
       }
       .exp-body {
-        font-size: 13px;
+        font-size: 14px;
         color: var(--dim);
         line-height: 1.8;
         max-width: 540px;
@@ -775,12 +759,12 @@
         padding: 14px 16px;
         border-left: 2px solid var(--ink);
         background: var(--border);
-        font-size: 12px;
+        font-size: 14px;
         color: var(--accent);
         line-height: 1.7;
       }
       .exp-lesson strong {
-        font-size: 9.5px;
+        font-size: 11px;
         letter-spacing: 0.14em;
         text-transform: uppercase;
         display: block;
@@ -818,7 +802,7 @@
         user-select: none;
       }
       .edu-lv {
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: 0.14em;
         text-transform: uppercase;
         color: var(--dim);
@@ -826,14 +810,14 @@
       }
       .edu-ti {
         font-family: var(--sans);
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 700;
         letter-spacing: -0.02em;
         line-height: 1.2;
         margin-bottom: 6px;
       }
       .edu-in {
-        font-size: 11.5px;
+        font-size: 13px;
         color: var(--dim);
         margin-bottom: 16px;
       }
@@ -844,7 +828,7 @@
         background: var(--ink);
         color: var(--paper);
         padding: 6px 12px;
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
@@ -864,7 +848,7 @@
         padding: 28px 30px;
       }
       .sk-head {
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: 0.16em;
         text-transform: uppercase;
         color: var(--dim);
@@ -882,7 +866,7 @@
         display: flex;
         align-items: center;
         gap: 9px;
-        font-size: 12.5px;
+        font-size: 14px;
         color: var(--accent);
         transition: color 0.2s;
       }
@@ -897,7 +881,7 @@
       }
       .sk-badge {
         margin-left: auto;
-        font-size: 9px;
+        font-size: 11px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         padding: 2px 7px;
@@ -910,38 +894,32 @@
      ON MY RADAR
   ═══════════════════════════════════ */
       #radar {
-        background: var(--dark-sec-bg);
-        color: var(--dark-sec-fg);
-      }
-      #radar .sec-t {
-        color: var(--dark-sec-fg);
-      }
-      #radar .sec-n {
-        color: var(--dark-sec-dim);
+        background: var(--paper);
+        color: var(--ink);
       }
 
       .radar-layout {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1px;
-        background: var(--dark-sec-border);
-        border: 1px solid var(--dark-sec-border);
+        background: var(--border);
+        border: 1px solid var(--border);
       }
       .radar-panel {
-        background: var(--dark-sec-bg);
+        background: var(--paper);
         padding: 32px;
       }
       .radar-panel-full {
         grid-column: span 2;
       }
       .radar-panel-title {
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: rgba(245, 244, 240, 0.4);
+        color: var(--dim);
         margin-bottom: 24px;
         padding-bottom: 12px;
-        border-bottom: 1px solid var(--dark-sec-border);
+        border-bottom: 1px solid var(--border);
       }
 
       .learning-list {
@@ -954,16 +932,16 @@
         align-items: center;
         gap: 12px;
         padding: 12px 0;
-        border-bottom: 1px solid rgba(245, 244, 240, 0.07);
-        font-size: 12.5px;
-        color: rgba(245, 244, 240, 0.7);
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--accent);
         transition: color 0.2s;
       }
       .learning-item:last-child {
         border-bottom: none;
       }
       .learning-item:hover {
-        color: var(--paper);
+        color: var(--ink);
       }
       .l-status {
         width: 20px;
@@ -994,10 +972,10 @@
         flex: 1;
       }
       .l-cat {
-        font-size: 9.5px;
+        font-size: 11px;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: rgba(245, 244, 240, 0.3);
+        color: var(--dim);
         margin-left: auto;
         flex-shrink: 0;
       }
@@ -1012,9 +990,9 @@
         align-items: flex-start;
         gap: 12px;
         padding: 12px 0;
-        border-bottom: 1px solid rgba(245, 244, 240, 0.07);
-        font-size: 12px;
-        color: rgba(245, 244, 240, 0.65);
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--accent);
       }
       .tech-watch-item:last-child {
         border-bottom: none;
@@ -1027,21 +1005,21 @@
         flex: 1;
       }
       .tw-title {
-        color: rgba(245, 244, 240, 0.85);
-        font-size: 12.5px;
+        color: var(--ink);
+        font-size: 14px;
       }
       .tw-sub {
-        font-size: 10px;
-        color: rgba(245, 244, 240, 0.35);
+        font-size: 12px;
+        color: var(--dim);
         margin-top: 1px;
       }
       .tw-badge {
-        font-size: 9px;
+        font-size: 11px;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         padding: 3px 8px;
-        border: 1px solid rgba(245, 244, 240, 0.12);
-        color: rgba(245, 244, 240, 0.4);
+        border: 1px solid var(--border);
+        color: var(--dim);
         flex-shrink: 0;
         margin-top: 2px;
       }
@@ -1051,9 +1029,9 @@
         align-items: center;
         justify-content: space-between;
         padding: 14px 0;
-        border-bottom: 1px solid rgba(245, 244, 240, 0.07);
-        font-size: 12px;
-        color: rgba(245, 244, 240, 0.6);
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--accent);
         transition: color 0.25s;
         cursor: pointer;
       }
@@ -1061,11 +1039,11 @@
         border-bottom: none;
       }
       .blog-link:hover {
-        color: var(--paper);
+        color: var(--ink);
       }
       .blog-link-meta {
-        font-size: 10px;
-        color: rgba(245, 244, 240, 0.3);
+        font-size: 12px;
+        color: var(--dim);
         margin-top: 2px;
       }
       .blog-arr {
@@ -1095,8 +1073,8 @@
       }
       .contact-r {
         padding: 72px 56px;
-        background: var(--dark-sec-bg);
-        color: var(--dark-sec-fg);
+        background: var(--paper);
+        color: var(--ink);
       }
       .contact-big {
         font-family: var(--sans);
@@ -1111,7 +1089,7 @@
         color: var(--dim);
       }
       .contact-sub {
-        font-size: 13px;
+        font-size: 15px;
         color: var(--dim);
         line-height: 1.8;
         max-width: 380px;
@@ -1124,7 +1102,7 @@
         background: var(--ink);
         color: var(--paper);
         padding: 13px 26px;
-        font-size: 11px;
+        font-size: 13px;
         letter-spacing: 0.12em;
         text-transform: uppercase;
         border: 1px solid var(--ink);
@@ -1143,22 +1121,22 @@
         align-items: center;
         justify-content: space-between;
         padding: 16px 0;
-        border-bottom: 1px solid rgba(245, 244, 240, 0.1);
-        font-size: 12.5px;
-        color: rgba(245, 244, 240, 0.65);
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--accent);
         transition: color 0.25s;
       }
       .clink:last-child {
         border-bottom: none;
       }
       .clink:hover {
-        color: var(--paper);
+        color: var(--ink);
       }
       .clink-lbl {
-        font-size: 9.5px;
+        font-size: 11px;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: rgba(245, 244, 240, 0.3);
+        color: var(--dim);
         display: block;
         margin-bottom: 2px;
       }
@@ -1992,10 +1970,8 @@
         </div>
         <div class="contact-r reveal d2">
           <div class="sec-hd" style="margin-bottom: 24px">
-            <span class="sec-n" style="color: rgba(245, 244, 240, 0.3)"
-              >07</span
-            >
-            <h2 class="sec-t" style="color: var(--paper)">Links</h2>
+            <span class="sec-n">07</span>
+            <h2 class="sec-t">Links</h2>
           </div>
           <a href="mailto:manubusiness27@gmail.com" class="clink">
             <div>
@@ -2127,8 +2103,11 @@
         const label = document.getElementById('theme-label');
         const stored = localStorage.getItem('theme');
 
-        // Apply stored preference or default to light
-        if (stored === 'dark') {
+        // Default to dark theme unless user explicitly chose light
+        if (stored === 'light') {
+          html.removeAttribute('data-theme');
+          label.textContent = 'Dark';
+        } else {
           html.setAttribute('data-theme', 'dark');
           label.textContent = 'Light';
         }

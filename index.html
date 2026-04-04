@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manohar Naidu Bheesetti — Portfolio</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -713,6 +714,9 @@
         font-size: 12px;
         color: var(--dim);
       }
+      .pipe-arr::before {
+        content: "\2193";
+      }
 
       /* ═══════════════════════════════════
      EXPERIENCE
@@ -1259,6 +1263,9 @@
           flex-wrap: wrap;
           justify-content: center;
         }
+        .pipe-arr::before {
+          content: "\2192";
+        }
         .skills-grid {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -1540,11 +1547,11 @@
             <div class="proj-visual">
               <div class="pipe">
                 <div class="pipe-node">Notion</div>
-                <div class="pipe-arr">&#8595;</div>
+                <div class="pipe-arr"></div>
                 <div class="pipe-node">Claude AI</div>
-                <div class="pipe-arr">&#8595;</div>
+                <div class="pipe-arr"></div>
                 <div class="pipe-node">LinkedIn</div>
-                <div class="pipe-arr">&#8595;</div>
+                <div class="pipe-arr"></div>
                 <div class="pipe-node">Blogger</div>
               </div>
             </div>

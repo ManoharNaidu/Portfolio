@@ -58,7 +58,9 @@
         font-size: 15px;
         line-height: 1.7;
         overflow-x: hidden;
-        transition: background 0.4s var(--ease), color 0.4s var(--ease);
+        transition:
+          background 0.4s var(--ease),
+          color 0.4s var(--ease);
       }
       ::selection {
         background: var(--ink);
@@ -145,6 +147,170 @@
       .nav-links li a.active::before {
         width: 18px;
       }
+      .nav-links li a[href="#projects"]::after { content: "01"; font-size: 9px; margin-left: auto; opacity: 0.5; }
+      .nav-links li a[href="#experience"]::after { content: "02"; font-size: 9px; margin-left: auto; opacity: 0.5; }
+      .nav-links li a[href="#education"]::after { content: "03"; font-size: 9px; margin-left: auto; opacity: 0.5; }
+      .nav-links li a[href="#skills"]::after { content: "04"; font-size: 9px; margin-left: auto; opacity: 0.5; }
+      .nav-links li a[href="#certifications"]::after { content: "05"; font-size: 9px; margin-left: auto; opacity: 0.5; }
+      .nav-links li a[href="#activities"]::after { content: "06"; font-size: 9px; margin-left: auto; opacity: 0.5; }
+      .nav-links li a[href="#radar"]::after { content: "07"; font-size: 9px; margin-left: auto; opacity: 0.5; }
+      .nav-links li a[href="#contact"]::after { content: "08"; font-size: 9px; margin-left: auto; opacity: 0.5; }
+
+      /* ═══════════════════════════════════
+     CERTIFICATIONS
+  ═══════════════════════════════════ */
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .cert-card {
+        background: var(--paper);
+        border: 1px solid var(--border);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        cursor: pointer;
+        transition: all 0.3s var(--ease);
+        position: relative;
+        overflow: hidden;
+      }
+      .cert-card:hover {
+        background: var(--card-hover);
+        border-color: var(--ink);
+        transform: translateY(-4px);
+      }
+      .cert-card::before {
+        content: "CERT";
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        color: var(--dim);
+        opacity: 0.3;
+      }
+      .cert-org {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .cert-title {
+        font-family: var(--sans);
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+      }
+      .cert-preview-btn {
+        margin-top: auto;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .cert-preview-btn::after {
+        content: "→";
+        transition: transform 0.3s var(--ease);
+      }
+      .cert-card:hover .cert-preview-btn::after {
+        transform: translateX(4px);
+      }
+
+      /* ═══════════════════════════════════
+     MODAL
+  ═══════════════════════════════════ */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s var(--ease);
+      }
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal-content {
+        position: relative;
+        width: 90%;
+        max-width: 1000px;
+        height: 85vh;
+        background: white;
+        transform: scale(0.95);
+        transition: transform 0.4s var(--ease);
+      }
+      .modal-overlay.active .modal-content {
+        transform: scale(1);
+      }
+      .modal-close {
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 32px;
+        cursor: pointer;
+        transition: transform 0.3s var(--ease);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+      }
+      .modal-close:hover {
+        transform: rotate(90deg);
+      }
+      .modal-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      @media (max-width: 1024px) {
+        .modal-close {
+          top: -50px;
+          right: 0;
+        }
+      }
+
+      .show-all-btn {
+        margin: 44px auto 0;
+        display: block;
+        background: var(--ink);
+        color: var(--paper);
+        border: 1px solid var(--ink);
+        padding: 12px 32px;
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s var(--ease);
+      }
+      .show-all-btn:hover {
+        background: transparent;
+        color: var(--ink);
+      }
+      .extra-certs {
+        display: none;
+        margin-top: 1.5rem;
+      }
+      .extra-certs.active {
+        display: grid;
+      }
 
       .nav-foot {
         font-size: 11px;
@@ -189,10 +355,18 @@
       .theme-toggle:hover .theme-toggle-icon {
         transform: rotate(30deg);
       }
-      [data-theme="dark"] .theme-toggle .theme-icon-sun { display: inline-flex; }
-      [data-theme="dark"] .theme-toggle .theme-icon-moon { display: none; }
-      .theme-toggle .theme-icon-sun { display: none; }
-      .theme-toggle .theme-icon-moon { display: inline-flex; }
+      [data-theme="dark"] .theme-toggle .theme-icon-sun {
+        display: inline-flex;
+      }
+      [data-theme="dark"] .theme-toggle .theme-icon-moon {
+        display: none;
+      }
+      .theme-toggle .theme-icon-sun {
+        display: none;
+      }
+      .theme-toggle .theme-icon-moon {
+        display: inline-flex;
+      }
 
       /* ═══════════════════════════════════
      MAIN
@@ -1361,6 +1535,7 @@
           <li><a href="#experience">Experience</a></li>
           <li><a href="#education">Education</a></li>
           <li><a href="#skills">Skills</a></li>
+          <li><a href="#certifications">Certifications</a></li>
           <li><a href="#activities">Activities</a></li>
           <li><a href="#radar">On My Radar</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -1370,7 +1545,11 @@
         <div class="nav-foot">
           Sydney, Australia<br />manubusiness27@gmail.com
         </div>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Toggle theme"
+        >
           <span class="theme-toggle-icon">
             <span class="theme-icon-moon">&#9790;</span>
             <span class="theme-icon-sun">&#9728;&#65039;</span>
@@ -1848,10 +2027,117 @@
         </div>
       </section>
 
+      <!-- CERTIFICATIONS -->
+      <section id="certifications">
+        <div class="sec-hd reveal">
+          <span class="sec-n">05</span>
+          <h2 class="sec-t">Certifications</h2>
+        </div>
+        <div class="cert-grid">
+          <div class="cert-card reveal d1" onclick="openCert('Certificates/Forage - CommBank Data Analysis.pdf')">
+            <span class="cert-org">Forage & CommBank</span>
+            <h3 class="cert-title">Data Analytics & Simulation</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal d2" onclick="openCert('Certificates/Forage - Deloite Data Analysis.pdf')">
+            <span class="cert-org">Forage & Deloitte</span>
+            <h3 class="cert-title">Strategy & Data Analytics</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal d3" onclick="openCert('Certificates/AWS - Maths for ML.pdf')">
+            <span class="cert-org">Amazon Web Services</span>
+            <h3 class="cert-title">AWS - Maths for Machine Learning</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal d4" onclick="openCert('Certificates/HackerRank - Problem Solving Intermeditate.pdf')">
+            <span class="cert-org">HackerRank</span>
+            <h3 class="cert-title">Problem Solving (Intermediate)</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal d1" onclick="openCert('Certificates/Udemy - Yolov9.pdf')">
+            <span class="cert-org">Udemy</span>
+            <h3 class="cert-title">Object Detection with YOLOv9</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal d2" onclick="openCert('Certificates/Ediglobe - Machine Learning.pdf')">
+            <span class="cert-org">Ediglobe</span>
+            <h3 class="cert-title">Machine Learning Professional</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+        </div>
+
+        <div class="cert-grid extra-certs" id="extraCerts">
+          <div class="cert-card reveal" onclick="openCert('Certificates/Udemy - Nodejs Masterclass.pdf')">
+            <span class="cert-org">Udemy</span>
+            <h3 class="cert-title">Node.js Masterclass</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/Hackerrank - NodeJS Basic.pdf')">
+            <span class="cert-org">HackerRank</span>
+            <h3 class="cert-title">Node.js (Basic)</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/Udemy - Backend REST API with NodeJS.pdf')">
+            <span class="cert-org">Udemy</span>
+            <h3 class="cert-title">Backend REST API with Node.js</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/Udemy - Pro Backend.pdf')">
+            <span class="cert-org">Udemy</span>
+            <h3 class="cert-title">Pro Backend Development</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/Udemy - Django for Beginners.pdf')">
+            <span class="cert-org">Udemy</span>
+            <h3 class="cert-title">Django for Beginners</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/Udemy - Docker.pdf')">
+            <span class="cert-org">Udemy</span>
+            <h3 class="cert-title">Docker & Containerisation</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/HackerRank - Python - Basic.pdf')">
+            <span class="cert-org">HackerRank</span>
+            <h3 class="cert-title">Python (Basic)</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/Udemy - Git- GitHub.pdf')">
+            <span class="cert-org">Udemy</span>
+            <h3 class="cert-title">Git & GitHub Mastery</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/Udemy - POSTMAN API.pdf')">
+            <span class="cert-org">Udemy</span>
+            <h3 class="cert-title">Postman API Testing</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/Udemy - PowerBI + Tableau + SQL.pdf')">
+            <span class="cert-org">Udemy</span>
+            <h3 class="cert-title">PowerBI, Tableau & SQL</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/Udemy - HTML-CSS.pdf')">
+            <span class="cert-org">Udemy</span>
+            <h3 class="cert-title">HTML & CSS Responsive Design</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+          <div class="cert-card reveal" onclick="openCert('Certificates/Typing Skill Certificate.pdf')">
+            <span class="cert-org">Typing.com</span>
+            <h3 class="cert-title">Typing Proficiency</h3>
+            <span class="cert-preview-btn">View Certificate</span>
+          </div>
+        </div>
+
+        <button id="showAllCerts" class="show-all-btn" onclick="toggleExtraCerts()">
+          Show All Certificates
+        </button>
+      </section>
+
       <!-- ACTIVITIES -->
       <section id="activities">
         <div class="sec-hd reveal">
-          <span class="sec-n">05</span>
+          <span class="sec-n">06</span>
           <h2 class="sec-t">Activities</h2>
         </div>
         <div class="achieve-grid">
@@ -1869,17 +2155,19 @@
             <h3 class="achieve-role">Auditor</h3>
             <p class="achieve-org">NAISA</p>
             <p class="achieve-desc">
-              Served as auditor, ensuring transparency and accountability
-              in organisational operations and financial reporting.
+              Served as auditor, ensuring transparency and accountability in
+              organisational operations and financial reporting.
             </p>
           </div>
           <div class="achieve-card reveal d3">
             <div class="achieve-icon">&#128227;</div>
-            <h3 class="achieve-role">Info &amp; Pub Marketing Teaming Member</h3>
+            <h3 class="achieve-role">
+              Info &amp; Pub Marketing Teaming Member
+            </h3>
             <p class="achieve-org">SonaByss</p>
             <p class="achieve-desc">
-              Contributed to information dissemination and publicity
-              marketing strategies, driving event awareness and outreach.
+              Contributed to information dissemination and publicity marketing
+              strategies, driving event awareness and outreach.
             </p>
           </div>
         </div>
@@ -1888,7 +2176,7 @@
       <!-- ON MY RADAR -->
       <section id="radar">
         <div class="sec-hd reveal">
-          <span class="sec-n">06</span>
+          <span class="sec-n">07</span>
           <h2 class="sec-t">On My Radar</h2>
         </div>
 
@@ -2019,8 +2307,7 @@
               <div>
                 <div>Auto-generated by the pipeline I built</div>
                 <div class="blog-link-meta">
-                  Weekly &middot; AI-assisted &middot;
-                  myweeklyautomatedjournal.blogspot.com
+                  Pipeline &middot; AI-assisted &middot; us2.make.com
                 </div>
               </div>
               <span class="blog-arr">&#8599;</span>
@@ -2049,7 +2336,7 @@
       <section id="contact" style="padding: 0">
         <div class="contact-l reveal">
           <div class="sec-hd" style="margin-bottom: 24px">
-            <span class="sec-n">07</span>
+            <span class="sec-n">08</span>
             <h2 class="sec-t">Contact</h2>
           </div>
           <p class="contact-big">
@@ -2066,7 +2353,7 @@
         </div>
         <div class="contact-r reveal d2">
           <div class="sec-hd" style="margin-bottom: 24px">
-            <span class="sec-n">08</span>
+            <span class="sec-n">09</span>
             <h2 class="sec-t">Links</h2>
           </div>
           <a href="mailto:manubusiness27@gmail.com" class="clink">
@@ -2111,6 +2398,14 @@
         </div>
       </section>
     </main>
+
+    <!-- Modal for Certificates -->
+    <div id="certModal" class="modal-overlay" onclick="closeCert()">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeCert()">&times;</button>
+        <iframe id="certIframe" class="modal-iframe"></iframe>
+      </div>
+    </div>
 
     <script>
       /* Trait Typewriter */
@@ -2193,34 +2488,81 @@
       );
 
       /* Theme Toggle */
-      (function() {
+      (function () {
         const html = document.documentElement;
-        const toggleBtn = document.getElementById('theme-toggle');
-        const label = document.getElementById('theme-label');
-        const stored = localStorage.getItem('theme');
+        const toggleBtn = document.getElementById("theme-toggle");
+        const label = document.getElementById("theme-label");
+        const stored = localStorage.getItem("theme");
 
         // Default to dark theme unless user explicitly chose light
-        if (stored === 'light') {
-          html.removeAttribute('data-theme');
-          label.textContent = 'Dark';
+        if (stored === "light") {
+          html.removeAttribute("data-theme");
+          label.textContent = "Dark";
         } else {
-          html.setAttribute('data-theme', 'dark');
-          label.textContent = 'Light';
+          html.setAttribute("data-theme", "dark");
+          label.textContent = "Light";
         }
 
-        toggleBtn.addEventListener('click', () => {
-          const isDark = html.getAttribute('data-theme') === 'dark';
+        toggleBtn.addEventListener("click", () => {
+          const isDark = html.getAttribute("data-theme") === "dark";
           if (isDark) {
-            html.removeAttribute('data-theme');
-            label.textContent = 'Dark';
-            localStorage.setItem('theme', 'light');
+            html.removeAttribute("data-theme");
+            label.textContent = "Dark";
+            localStorage.setItem("theme", "light");
           } else {
-            html.setAttribute('data-theme', 'dark');
-            label.textContent = 'Light';
-            localStorage.setItem('theme', 'dark');
+            html.setAttribute("data-theme", "dark");
+            label.textContent = "Light";
+            localStorage.setItem("theme", "dark");
           }
         });
       })();
+
+      /* Certificate Modal Logic */
+      const modal = document.getElementById("certModal");
+      const iframe = document.getElementById("certIframe");
+
+      function openCert(path) {
+        iframe.src = path;
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden"; // Prevent scroll
+      }
+
+      function closeCert() {
+        modal.classList.remove("active");
+        document.body.style.overflow = ""; // Restore scroll
+        setTimeout(() => {
+          iframe.src = "";
+        }, 400);
+      }
+
+      // Close on Esc
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          closeCert();
+        }
+      });
+
+      /* Toggle Extra Certificates */
+      function toggleExtraCerts() {
+        const extra = document.getElementById("extraCerts");
+        const btn = document.getElementById("showAllCerts");
+        const isActive = extra.classList.toggle("active");
+
+        if (isActive) {
+          btn.textContent = "Show Less";
+          // Re-trigger reveal animation for new items
+          const newReveals = extra.querySelectorAll(".reveal");
+          newReveals.forEach((el, index) => {
+            el.style.transitionDelay = `${(index % 4) * 0.1}s`;
+            el.classList.add("in");
+          });
+        } else {
+          btn.textContent = "Show All Certificates";
+          document
+            .getElementById("certifications")
+            .scrollIntoView({ behavior: "smooth" });
+        }
+      }
     </script>
   </body>
 </html>

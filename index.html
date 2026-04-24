@@ -366,18 +366,24 @@
         grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
         gap: 20px;
         align-content: start;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        background: rgba(255, 255, 255, 0.78);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #1a1a1a;
+        color: #f0efe8;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
       }
+
       .preview-card-main {
         padding: 24px;
       }
       .preview-card-side {
         padding: 24px;
-        border-left: 1px solid rgba(0, 0, 0, 0.08);
-        background: rgba(0, 0, 0, 0.02);
+        background: rgba(255, 255, 255, 0.03);
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden; /* Ensure images don't overflow */
       }
+
       .preview-domain {
         font-size: 10px;
         letter-spacing: 0.14em;
@@ -395,8 +401,9 @@
       .preview-desc {
         font-size: 13px;
         line-height: 1.8;
-        color: #333;
+        color: #ccc;
       }
+
       .preview-badges {
         display: flex;
         flex-wrap: wrap;
@@ -408,16 +415,59 @@
         align-items: center;
         gap: 6px;
         padding: 7px 10px;
-        border: 1px solid rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         font-size: 10px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        background: rgba(255, 255, 255, 0.72);
+        background: rgba(255, 255, 255, 0.05);
+        color: #888;
       }
+      .preview-carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding-bottom: 10px;
+        width: 100%;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+      }
+      .preview-carousel::-webkit-scrollbar {
+        height: 4px;
+      }
+      .preview-carousel::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+      }
+      .carousel-item {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        min-width: 0;
+      }
+      .preview-image {
+        width: 100%;
+        height: auto;
+        max-height: 450px;
+        object-fit: contain;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: block;
+        background: #000;
+      }
+      .carousel-counter {
+        font-family: var(--mono);
+        font-size: 9px;
+        color: #555;
+        text-align: right;
+      }
+
+
       .preview-figure {
         width: 100%;
         aspect-ratio: 16 / 10;
-        border: 1px dashed rgba(0, 0, 0, 0.16);
+        border: 1px dashed rgba(255, 255, 255, 0.2);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -426,13 +476,14 @@
         font-family: var(--sans);
         font-size: 20px;
         font-weight: 700;
-        color: #111;
+        color: #eee;
         background: linear-gradient(
           135deg,
-          rgba(0, 0, 0, 0.03),
-          rgba(255, 255, 255, 0.9)
+          rgba(0, 0, 0, 0.2),
+          rgba(255, 255, 255, 0.02)
         );
       }
+
       .preview-stats {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -441,9 +492,10 @@
       }
       .preview-stat {
         padding: 14px;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
       }
+
       .preview-stat-label {
         display: block;
         font-size: 10px;
@@ -513,7 +565,9 @@
         border: none;
         flex: 1;
         min-height: 0;
+        background: #1a1a1a; /* Dark background to prevent white flash */
       }
+
 
       @media (max-width: 1024px) {
         .modal-toolbar {
@@ -1932,7 +1986,11 @@
               openPreview(
                 'https://myweeklyautomatedjournal.blogspot.com/',
                 'AI Content Automation Pipeline',
+                'Automation System',
+                false,
+                'screenshots/make.png'
               )
+
             "
           >
             <div class="proj-content">
@@ -1986,7 +2044,19 @@
               openPreview(
                 'https://github.com/ManoharNaidu/MyExpenses-Apk',
                 'My Expenses APK',
+                'Android App',
+                false,
+                [
+                  'screenshots/my_expenses/1776437858990.jfif',
+                  'screenshots/my_expenses/1776437859485.jfif',
+                  'screenshots/my_expenses/1776437859521.jfif',
+                  'screenshots/my_expenses/1776437859548.jfif',
+                  'screenshots/my_expenses/1776437859741.jfif',
+                  'screenshots/my_expenses/1776437860003.jfif'
+                ]
               )
+
+
             "
           >
             <div class="proj-top">
@@ -2026,7 +2096,18 @@
               openPreview(
                 'https://github.com/ManoharNaidu/QP-Repository',
                 'QP Repository',
+                'Full-Stack Web App',
+                false,
+                [
+                  'screenshots/QP_repo/Screenshot 2026-04-12 123436.png',
+                  'screenshots/QP_repo/Screenshot 2026-04-12 123444.png',
+                  'screenshots/QP_repo/Screenshot 2026-04-12 123450.png',
+                  'screenshots/QP_repo/Screenshot 2026-04-12 123454.png',
+                  'screenshots/QP_repo/Screenshot 2026-04-12 123501.png'
+                ]
               )
+
+
             "
           >
             <div class="proj-top">
@@ -2877,16 +2958,26 @@
         }
       }
 
-      function repoFromGithubUrl(path) {
+      function parseGithubUrl(path) {
         try {
+          const urlStr = path.toString().toLowerCase();
+          if (!urlStr.includes("github.com")) return null;
+
           const url = new URL(path, window.location.href);
           const parts = url.pathname.split("/").filter(Boolean);
+
+          // Profile: github.com/username or github.com/username/
+          if (parts.length === 1) {
+            return { type: "profile", owner: parts[0] };
+          }
+          // Repo: github.com/username/repo or deeper
           if (parts.length >= 2) {
-            return { owner: parts[0], repo: parts[1] };
+            return { type: "repo", owner: parts[0], repo: parts[1] };
           }
         } catch {}
         return null;
       }
+
 
       function renderPreviewCard(content) {
         previewPanel.innerHTML = content;
@@ -2894,10 +2985,33 @@
         iframe.style.display = "none";
       }
 
-      function renderStaticPreview(path, title, kicker) {
+      function renderStaticPreview(path, title, kicker, imagePath = null) {
         const label = siteLabelFromUrl(path);
         const cleanTitle = title || label;
+        
+        // Handle potential array of images
+        const images = Array.isArray(imagePath) ? imagePath : (imagePath ? [imagePath] : []);
+        
+        let visualContent;
+        if (images.length > 1) {
+          visualContent = `
+            <div class="preview-carousel">
+              ${images.map((img, i) => `
+                <div class="carousel-item">
+                  <img src="${img}" class="preview-image" alt="${cleanTitle} ${i+1}">
+                  <div class="carousel-counter">${i+1} / ${images.length}</div>
+                </div>
+              `).join("")}
+            </div>
+          `;
+        } else if (images.length === 1) {
+          visualContent = `<img src="${images[0]}" class="preview-image" alt="${cleanTitle}">`;
+        } else {
+          visualContent = `<div class="preview-figure">${label}</div>`;
+        }
+
         renderPreviewCard(`
+
           <div class="preview-card">
             <div class="preview-card-main">
               <div class="preview-domain">${kicker}</div>
@@ -2911,38 +3025,81 @@
               </div>
             </div>
             <div class="preview-card-side">
-              <div class="preview-figure">${label}</div>
+              ${visualContent}
             </div>
           </div>
         `);
       }
 
-      async function renderGithubPreview(path, title, kicker) {
-        const repo = repoFromGithubUrl(path);
-        if (!repo) {
-          renderStaticPreview(path, title, kicker);
-          return;
-        }
-
-        const requestId = ++previewSeq;
+      function renderGithubProfilePreview(owner, kicker) {
         renderPreviewCard(`
           <div class="preview-card">
             <div class="preview-card-main">
               <div class="preview-domain">${kicker}</div>
-              <div class="preview-name">Loading repository...</div>
-              <div class="preview-desc">Fetching live metadata from the GitHub API.</div>
+              <div class="preview-name">@${owner}</div>
+              <div class="preview-desc">
+                Welcome to my digital workshop on GitHub. Here you can explore my open-source contributions, repositories, and development activity.
+              </div>
+              <div class="preview-badges" style="margin-top: 20px;">
+                <span class="preview-badge">GitHub Profile</span>
+                <span class="preview-badge">Active Developer</span>
+              </div>
+            </div>
+            <div class="preview-card-side" style="justify-content: center; align-items: center;">
+              <img 
+                src="https://githubcard.com/${owner}.svg" 
+                alt="GitHub Profile Card" 
+                class="preview-image"
+                style="border: none; box-shadow: none; max-width: 320px;"
+              >
+            </div>
+          </div>
+        `);
+      }
+
+      async function renderGithubPreview(path, title, kicker, imagePath = null) {
+        const gh = parseGithubUrl(path);
+        if (!gh) {
+          renderStaticPreview(path, title, kicker, imagePath);
+          return;
+        }
+
+        if (gh.type === "profile") {
+          renderGithubProfilePreview(gh.owner, kicker);
+          return;
+        }
+
+        const requestId = ++previewSeq;
+        const images = Array.isArray(imagePath) ? imagePath : (imagePath ? [imagePath] : []);
+        
+        let initialVisual;
+        if (images.length > 0) {
+          initialVisual = `<img src="${images[0]}" class="preview-image" alt="Loading...">`;
+        } else {
+          initialVisual = `<div class="preview-figure">GitHub</div>`;
+        }
+
+        renderPreviewCard(`
+          <div class="preview-card">
+            <div class="preview-card-main">
+              <div class="preview-domain">${kicker}</div>
+              <div class="preview-name">${cleanGithubName(gh.owner, gh.repo)}</div>
+              <div class="preview-desc">Connecting to GitHub API to fetch latest project vitals...</div>
             </div>
             <div class="preview-card-side">
-              <div class="preview-figure">GitHub</div>
+              ${initialVisual}
             </div>
           </div>
         `);
 
+
+
         try {
           const response = await fetch(
-            `https://api.github.com/repos/${repo.owner}/${repo.repo}`,
+            `https://api.github.com/repos/${gh.owner}/${gh.repo}`,
             { headers: { Accept: "application/vnd.github+json" } },
           );
+
           if (!response.ok) throw new Error("GitHub API request failed");
           const data = await response.json();
           if (requestId !== previewSeq) return;
@@ -2964,7 +3121,8 @@
             <div class="preview-card">
               <div class="preview-card-main">
                 <div class="preview-domain">${kicker}</div>
-                <div class="preview-name">${data.full_name || cleanGithubName(repo.owner, repo.repo)}</div>
+                <div class="preview-name">${data.full_name || cleanGithubName(gh.owner, gh.repo)}</div>
+
                 <div class="preview-desc">${escapeHtml(description)}</div>
                 <div class="preview-badges">
                   <span class="preview-badge">${escapeHtml(language)}</span>
@@ -2974,12 +3132,26 @@
                 </div>
               </div>
               <div class="preview-card-side">
-                <div class="preview-stats">
+                ${images.length > 1 ? `
+                  <div class="preview-carousel">
+                    ${images.map((img, i) => `
+                      <div class="carousel-item">
+                        <img src="${img}" class="preview-image" alt="Preview ${i+1}">
+                        <div class="carousel-counter">${i+1} / ${images.length}</div>
+                      </div>
+                    `).join("")}
+                  </div>
+                ` : images.length === 1 ? `
+                  <img src="${images[0]}" class="preview-image" alt="Mockup">
+                ` : `<div class="preview-figure">GitHub Repo</div>`}
+                <div class="preview-stats" style="margin-top: 20px;">
+
                   <div class="preview-stat">
                     <span class="preview-stat-label">Owner</span>
-                    <div class="preview-stat-value">${escapeHtml(data.owner?.login || repo.owner)}</div>
+                    <div class="preview-stat-value">${escapeHtml(data.owner?.login || gh.owner)}</div>
                     <div class="preview-stat-sub">${escapeHtml(data.visibility || "public")} repository</div>
                   </div>
+
                   <div class="preview-stat">
                     <span class="preview-stat-label">Last push</span>
                     <div class="preview-stat-value">${formatPreviewDate(data.pushed_at)}</div>
@@ -2993,7 +3165,8 @@
           `);
         } catch {
           if (requestId !== previewSeq) return;
-          renderStaticPreview(path, title, kicker);
+          renderStaticPreview(path, title, kicker, imagePath);
+
           previewNote.textContent =
             "GitHub metadata could not be loaded, so a summary card is shown instead.";
         }
@@ -3040,7 +3213,9 @@
         title,
         kicker = "Website Preview",
         forceEmbed = false,
+        imagePath = null,
       ) {
+
         previewSeq += 1;
         previewTitle.textContent = title || path;
         previewKicker.textContent = kicker;
@@ -3055,10 +3230,13 @@
           iframe.src = "about:blank";
           iframe.style.display = "none";
           previewNote.textContent = "Building a custom preview card...";
-          if (path.includes("github.com/")) {
-            renderGithubPreview(path, title, kicker);
+          if (path.toLowerCase().includes("github.com")) {
+            renderGithubPreview(path, title, kicker, imagePath);
+          } else if (path.toLowerCase().includes("make.com")) {
+            renderStaticPreview(path, title, kicker, "screenshots/make.png");
           } else {
-            renderStaticPreview(path, title, kicker);
+            renderStaticPreview(path, title, kicker, imagePath);
+
             previewNote.textContent =
               "This site blocks embedded previews. The card below replaces the iframe.";
           }

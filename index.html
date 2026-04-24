@@ -363,14 +363,15 @@
       .preview-card {
         width: 100%;
         display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
-        gap: 20px;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+        gap: 0; /* Remove gap to maximize space */
         align-content: start;
         border: 1px solid rgba(255, 255, 255, 0.1);
         background: #1a1a1a;
         color: #f0efe8;
         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
       }
+
 
       .preview-card-main {
         padding: 24px;
@@ -426,12 +427,16 @@
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        gap: 15px;
-        padding-bottom: 10px;
+        gap: 0;
+        padding-bottom: 20px;
         width: 100%;
+        min-height: 400px;
+        flex-shrink: 0;
         scrollbar-width: thin;
         scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
       }
+
+
       .preview-carousel::-webkit-scrollbar {
         height: 4px;
       }
@@ -441,21 +446,29 @@
       }
       .carousel-item {
         flex: 0 0 100%;
+        width: 100%;
         scroll-snap-align: start;
         display: flex;
         flex-direction: column;
         gap: 8px;
         min-width: 0;
       }
+
       .preview-image {
         width: 100%;
         height: auto;
-        max-height: 450px;
+        min-height: 380px; 
+        max-height: 80vh;
         object-fit: contain;
         border: 1px solid rgba(255, 255, 255, 0.1);
         display: block;
-        background: #000;
+        background: #111;
+        border-radius: 4px;
+        flex-shrink: 0;
       }
+
+
+
       .carousel-counter {
         font-family: var(--mono);
         font-size: 9px;
@@ -3130,7 +3143,30 @@
                   <span class="preview-badge">${forks} forks</span>
                   <span class="preview-badge">GitHub API</span>
                 </div>
+
+                <div class="preview-stats" style="margin-top: 32px;">
+                  <div class="preview-stat">
+                    <span class="preview-stat-label">Owner</span>
+                    <div class="preview-stat-value">${escapeHtml(data.owner?.login || gh.owner)}</div>
+                    <div class="preview-stat-sub">${escapeHtml(data.visibility || "public")} repository</div>
+                  </div>
+                  <div class="preview-stat">
+                    <span class="preview-stat-label">Last push</span>
+                    <div class="preview-stat-value">${formatPreviewDate(data.pushed_at)}</div>
+                    <div class="preview-stat-sub">Live GitHub metadata</div>
+                  </div>
+                </div>
+
+                <div class="repo-meta-ext" style="margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;">
+                  <div class="preview-figure" style="height: auto; aspect-ratio: auto; border: 1px solid rgba(255,255,255,0.1); font-size: 13px; font-weight: 400; background: rgba(255,255,255,0.02); padding: 12px; text-align: left; justify-content: flex-start;">
+                    ${escapeHtml(topics.length ? topics.join(" • ") : "Repository overview")}
+                  </div>
+                  <div class="preview-readme" style="margin-top: 16px; opacity: 0.7; font-size: 12px; line-height: 1.6;">
+                    ${escapeHtml(readmeSnippet)}
+                  </div>
+                </div>
               </div>
+
               <div class="preview-card-side">
                 ${images.length > 1 ? `
                   <div class="preview-carousel">
@@ -3144,25 +3180,10 @@
                 ` : images.length === 1 ? `
                   <img src="${images[0]}" class="preview-image" alt="Mockup">
                 ` : `<div class="preview-figure">GitHub Repo</div>`}
-                <div class="preview-stats" style="margin-top: 20px;">
-
-                  <div class="preview-stat">
-                    <span class="preview-stat-label">Owner</span>
-                    <div class="preview-stat-value">${escapeHtml(data.owner?.login || gh.owner)}</div>
-                    <div class="preview-stat-sub">${escapeHtml(data.visibility || "public")} repository</div>
-                  </div>
-
-                  <div class="preview-stat">
-                    <span class="preview-stat-label">Last push</span>
-                    <div class="preview-stat-value">${formatPreviewDate(data.pushed_at)}</div>
-                    <div class="preview-stat-sub">Live GitHub metadata</div>
-                  </div>
-                </div>
-                <div class="preview-figure">${escapeHtml(topics.length ? topics.join(" • ") : "Repository overview")}</div>
-                <div class="preview-readme" style="margin-top: 16px;">${escapeHtml(readmeSnippet)}</div>
               </div>
             </div>
           `);
+
         } catch {
           if (requestId !== previewSeq) return;
           renderStaticPreview(path, title, kicker, imagePath);
